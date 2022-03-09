@@ -12,7 +12,7 @@
         <br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                {% for img in veiculo.imagens.all  %}
+                {% for img in imagens %}
                     <div class="carousel-item {% if forloop.first %} active {% endif %}" >
                         <img class="d-block w-100" src="{{img}}" alt="First slide">
                     </div>
@@ -72,7 +72,7 @@
                 {% for sugestao in sugestoes %}
                     <div class="col-md cont">
                         <div class="card_imovel">
-                            <img class="img_capa_imovel" src="{{sugestao.imagens.all.0.img.url}}">
+                            <img class="img_capa_imovel" src="{{sugestao.imagem1.url}}">
                             <div class="informacoes_imoveis">
                             <a class="a_none" href="{% url 'veiculo' sugestao.id %}"><h4 class="valor">R$ {{sugestao.valor}}</h4></a>
                             <p>{{sugestao.rua}}, {{sugestao.cidade}}</p>

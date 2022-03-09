@@ -1,7 +1,6 @@
 from django.contrib import admin
-from plataforma.models import Cidade, Veiculo, Imagem
+from plataforma.models import  Veiculo
 
 # Register your models here.
-admin.site.register(Imagem)
 admin.site.register(Veiculo)
-admin.site.register(Cidade)
+

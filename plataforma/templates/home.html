@@ -18,7 +18,7 @@
           <a href="{% url 'veiculo' veiculo.id %}" class="a_none">
             <div class="col-md cont">
               <div class="card_imovel">
-                <img class="img_capa_imovel" src="{{veiculo.imagens.all.0.img.url}}">
+                <img class="img_capa_imovel" src="{{veiculo.imagem1.url}}">
                 <div class="informacoes_imoveis">
                   <a class="a_none" href="{% url 'veiculo' veiculo.id %}"><h4 class="valor">R$ {{veiculo.valor}}</h4></a>
                   {% if veiculo.tipo_combustivel  == 'G' %}
