@@ -1,5 +1,7 @@
+from multiprocessing import context
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,get_object_or_404
+from plataforma.forms import VeiculoForm
 
 from plataforma.models import Cidade, Veiculo
 
@@ -36,3 +38,22 @@ def veiculo(request, id):
     veiculo = get_object_or_404(Veiculo, id=id)
     sugestoes = Veiculo.objects.filter(cidade=veiculo.cidade).exclude(id=id)[:2]
     return render(request, 'veiculo.html', {'veiculo': veiculo, 'sugestoes': sugestoes, 'id': id})
+
+
+def anuncieForm(request):
+    if request.method == "GET":    
+        form = VeiculoForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'anuncie.html', context=context)
+    else:
+        form = VeiculoForm(request.POST)
+        if form.is_valid():
+            veiculo = form.save
+            form = VeiculoForm()
+        
+        context = {
+            'form': form
+        }
+        return render(request, 'anuncie.html', context=context)
