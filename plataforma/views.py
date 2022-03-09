@@ -1,5 +1,7 @@
 from multiprocessing import context
+from operator import mod
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
 from plataforma.forms import VeiculoForm
 
@@ -40,20 +42,31 @@ def veiculo(request, id):
     return render(request, 'veiculo.html', {'veiculo': veiculo, 'sugestoes': sugestoes, 'id': id})
 
 
-def anuncieForm(request):
-    if request.method == "GET":    
-        form = VeiculoForm()
-        context = {
-            'form': form
-        }
-        return render(request, 'anuncie.html', context=context)
+def anuncie(request):
+    if request.method=="GET":
+        cidades = Cidade.objects.all()
+        return render(request, 'anuncie.html', {'cidades': cidades})
     else:
-        form = VeiculoForm(request.POST)
-        if form.is_valid():
-            veiculo = form.save
-            form = VeiculoForm()
-        
-        context = {
-            'form': form
-        }
-        return render(request, 'anuncie.html', context=context)
+        cidades = Cidade.objects.all()
+        contact = Veiculo
+        modelo = request.POST.get('name')
+        valor = request.POST.get('emailC')
+        kmRodados = request.POST.get('kmRodados')
+        ano = request.POST.get('ano')
+        cor = request.POST.get('cor')
+        tipo_combustivel = request.POST.getlist('tipo_combustivel')
+        cidade = request.POST.getlist('cidade')
+        telefone = request.POST.get('telefone')
+        descricao = request.POST.get('descricao')
+
+        contact.modelo = modelo
+        contact.valor = valor
+        contact.kmRodados = kmRodados
+        contact.ano = ano
+        contact.cor = cor
+        contact.tipo_combustivel = tipo_combustivel
+        contact.cidade = cidade
+        contact.telefone = telefone
+        contact.mensagem = descricao
+        contact.save()
+        return render(request,'anuncie.html', {'cidades': cidades})
