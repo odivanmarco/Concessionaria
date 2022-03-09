@@ -41,16 +41,18 @@ def cadastro(request):
 
 def logar(request):
     if request.method == "GET":
-        if request.user.is_authenticated:
-            return redirect('/')
         return render(request, 'logar.html')
     elif request.method == "POST":
         username = request.POST.get('username')
         senha = request.POST.get('senha')
         usuario = auth.authenticate(username=username, password=senha)
-    if not usuario:
-        messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
-        return redirect('/auth/logar')
-    else:
-        auth.login(request, usuario)
-        return redirect('/')
+        if not usuario:
+            messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
+            return redirect('/auth/logar')
+        else:
+            auth.login(request, usuario)
+            return redirect('/')
+
+def sair(request):
+    auth.logout(request)
+    return redirect('/auth/logar')

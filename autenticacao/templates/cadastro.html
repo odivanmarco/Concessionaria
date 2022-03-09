@@ -27,6 +27,13 @@
     <!-- Logar -->
     <form class="d-flex justify-content-center flex-wrap" method="POST" action="{% url 'cadastro' %}">
         {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="col-md-7 col-sm-10 text-center alert {{message.tags}}">
+            {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
         <div class="col-md-7 col-sm-10 mb-1 ">
             <label for="InputUsername" class="form-label">Nome de usuario</label>
             <input name="username" type="text" class="form-control" id="InputUsername" aria-describedby="emailHelp" placeholder="username">
