@@ -1,8 +1,7 @@
-from django.urls import path
-from django.urls.resolvers import URLPattern 
 from . import views
+from django.urls import path
+
 urlpatterns = [
-    path('register/', views.register, name="register"),
-    path('login/', views.login, name="login"),
-    path('logout/', views.logout, name="logout")
+    path('cadastro/', views.cadastro, name='cadastro'),
+    path('logar/', views.logar, name='logar'),
 ]

@@ -1,13 +1,9 @@
 from unicodedata import name
-from django.urls import path
-from django.urls.resolvers import URLPattern
 from . import views
-
+from django.urls import path
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('imovel/<str:id>', views.imovel, name="imovel"),
-    path('agendar_visitas', views.agendar_visitas, name='agendar_visitas'),
-    path('agendamentos', views.agendamentos, name="agendamentos"),
-    path('cancelar_agendamento/<str:id>', views.cancelar_agendamento , name="cancelar_agendamento")
+    path('', views.home, name='home'),
+    path('contato/', views.contato, name='contato'),
+    path('sobre', views.sobre, name='sobre'),
 ]
