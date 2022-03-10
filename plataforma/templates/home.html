@@ -6,7 +6,15 @@
 {% endblock  %}
 {% block 'title' %}Página Inicial{% endblock %}
 {% block 'body' %}
-  
+<div class="container-fluid d-flex justify-content-center align-items-center"  id="img-car-logo">
+  <form>
+    <div class="container d-flex flex-nowrap">
+      <input type="text" class="form-control" placeholder="Search" id="input-pesquisa">
+      <button class="btn btn-dark" type="submit" id="botao-pesquisa"> <img src="{% static '/img/lupa.png' %}" alt="icone-lupa" id="lupa">
+      </button>
+    </div>
+  </form>
+</div>
 <div class="container mt-2 ">  
   <br>
   <button type="button" class="btn_filtrar" data-toggle="modal"
