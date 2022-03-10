@@ -3,7 +3,7 @@ from operator import concat, mod
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render,get_object_or_404
-from .models import Veiculo
+from .models import Veiculo, Contato
 
 
 # Create your views here.
@@ -25,9 +25,6 @@ def home(request):
         veiculos = Veiculo.objects.all()
     
     return render(request, 'home.html', {'veiculos': veiculos})
-    
-def contato(request):
-    return render(request,'contato.html')
 
 def sobre(request):
     return render(request,'sobre.html')
@@ -82,4 +79,29 @@ def anuncie(request):
     except:
         return render(request,'anuncie.html',)
 
-        
+def pesquisar(request):
+    pesquisa = request.POST.get('pesquisa')
+    if Veiculo.objects.filter(modelo__contains=pesquisa,):
+        veiculos = Veiculo.objects.filter(modelo__contains=pesquisa,)
+    elif Veiculo.objects.filter(cor__contains=pesquisa,):
+        veiculos = Veiculo.objects.filter(cor__contains=pesquisa,)
+    elif Veiculo.objects.filter(cidade__contains=pesquisa,):
+        veiculos = Veiculo.objects.filter(cidade__contains=pesquisa,)
+    return render(request, 'home.html', {'veiculos': veiculos})
+
+
+def contato(request):
+    if request.method=="GET":
+        return render(request, 'contato.html')
+    else:
+        contact = Contato()
+        name = request.POST.get('name')
+        email = request.POST.get('emailC')
+        telefone = request.POST.get('telefone')
+        subject = request.POST.get('mensagem')
+        contact.name = name
+        contact.email = email
+        contact.telefone = telefone
+        contact.mensagem = subject
+        contact.save()
+        return render(request,'contato.html')

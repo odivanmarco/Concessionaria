@@ -23,3 +23,8 @@ class Veiculo(models.Model):
     bairro = models.CharField(max_length=60)
     rua = models.CharField(max_length=60)
 
+class Contato(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=254)
+    telefone = models.CharField(max_length=20)
+    mensagem = models.TextField(max_length=255)

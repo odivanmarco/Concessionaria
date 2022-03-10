@@ -7,9 +7,10 @@
 {% block 'title' %}Página Inicial{% endblock %}
 {% block 'body' %}
 <div class="container-fluid d-flex justify-content-center align-items-center"  id="img-car-logo">
-  <form>
+  <form action="{% url 'pesquisa' %}" method="POST" >
+    {% csrf_token %}
     <div class="container d-flex flex-nowrap">
-      <input type="text" class="form-control" placeholder="Search" id="input-pesquisa">
+      <input type="text" class="form-control" name="pesquisa"  placeholder="Search" id="input-pesquisa">
       <button class="btn btn-dark" type="submit" id="botao-pesquisa"> <img src="{% static '/img/lupa.png' %}" alt="icone-lupa" id="lupa">
       </button>
     </div>

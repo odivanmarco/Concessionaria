@@ -74,16 +74,44 @@
                         <div class="card_imovel">
                             <img class="img_capa_imovel" src="{{sugestao.imagem1.url}}">
                             <div class="informacoes_imoveis">
-                            <a class="a_none" href="{% url 'veiculo' sugestao.id %}"><h4 class="valor">R$ {{sugestao.valor}}</h4></a>
-                            <p>{{sugestao.rua}}, {{sugestao.cidade}}</p>
-                            <br>
-                            <img width="7%" src="{% static 'plataforma/img/heart.png' %}">
-                            </div>
-                        
+                                <a class="a_none" href="{% url 'veiculo' veiculo.id %}"><h4 class="valor">R$ {{veiculo.valor}}</h4></a>
+                                {% if veiculo.tipo_combustivel  == 'G' %}
+                                <strong>
+                                  <p>Gasolina</p>
+                                </strong>
+                                {% endif %}
+              
+                                {% if veiculo.tipo_combustivel  == 'A' %}
+                                <strong>
+                                  <p>Alcool</p>
+                                </strong>
+                                <strong>{% endif %}</strong>
+              
+                                {% if veiculo.tipo_combustivel  == 'D' %}
+                                <strong>
+                                  <p>Diesel</p>
+                                </strong>
+                                {% endif %}
+              
+                                {% if veiculo.tipo_combustivel  == 'E' %}
+                                <strong>
+                                  <p>Elétrico</p>
+                                </strong>
+                                {% endif %}
+              
+                                {% if veiculo.tipo_combustivel  == 'F' %}
+                                <strong>
+                                  <p>Flex</p>
+                                </strong>
+                                {% endif %}
+              
+                                <strong>{{veiculo.rua}} <br> {{veiculo.bairro}} <br>{{veiculo.cidade}}</strong>
+                                <br>
+                                <p><strong>Modelo:</strong> {{veiculo.modelo}} <br>
+                                  <strong>Ano: </strong>{{veiculo.ano}}</p>
+                              </div>
                         </div>
-
                     </div>
-
                 {% endfor %}
             </div>
             
