@@ -2,7 +2,7 @@ from multiprocessing import context
 from operator import concat, mod
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import redirect, render,get_object_or_404
 from .models import Veiculo
 
 
@@ -11,9 +11,8 @@ from .models import Veiculo
 def home(request):
     preco_minimo = request.GET.get('preco_minimo')
     preco_maximo = request.GET.get('preco_maximo')
-    cidade = request.GET.get('cidade')
     
-    if preco_minimo or preco_maximo or cidade:
+    if preco_minimo or preco_maximo:
         
         if not preco_minimo:
             preco_minimo = 0
@@ -21,8 +20,7 @@ def home(request):
             preco_maximo = 999999999
 
         veiculos = Veiculo.objects.filter(valor__gte=preco_minimo)\
-        .filter(valor__lte=preco_maximo)\
-        .filter(cidade=cidade)
+                                                    .filter(valor__lte=preco_maximo)
     else:
         veiculos = Veiculo.objects.all()
     
@@ -78,8 +76,10 @@ def anuncie(request):
         contact.imagem1 = imagem1
         contact.imagem2 = imagem2
         contact.imagem3 = imagem3
-        
+    try:
         contact.save()
+        return redirect('home')
+    except:
         return render(request,'anuncie.html',)
 
         
