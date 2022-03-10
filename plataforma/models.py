@@ -1,9 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-def upload_image_book(instance, filename):
-    pass
-
 # Create your models here.
 class Veiculo(models.Model):
     choices_combustivel = (('G','Gasolina'),
@@ -12,7 +9,7 @@ class Veiculo(models.Model):
                                             ('E', 'Eletrico'), 
                                             ('F','Flex'))
 
-    imagem1 = models.ImageField(upload_to='img')
+    imagem1 = models.FileField(upload_to='img')
     imagem2 = models.ImageField(upload_to='img')
     imagem3 = models.ImageField(upload_to='img')
     valor = models.FloatField()
@@ -25,3 +22,4 @@ class Veiculo(models.Model):
     cidade = models.CharField(max_length=60)
     bairro = models.CharField(max_length=60)
     rua = models.CharField(max_length=60)
+

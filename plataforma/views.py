@@ -1,5 +1,5 @@
 from multiprocessing import context
-from operator import mod
+from operator import concat, mod
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
@@ -60,8 +60,10 @@ def anuncie(request):
         descricao = request.POST.get('descricao')
         bairro = request.POST.get('bairro')
         rua = request.POST.get('rua')
-        imagem = request.POST.get('arquivos')
-
+        imagem1 = request.FILES.get('img1')
+        imagem2 = request.FILES.get('img2')
+        imagem3 = request.FILES.get('img3')
+        
         contact.modelo = modelo
         contact.valor = valor
         contact.kmRodados = kmRodados
@@ -73,7 +75,10 @@ def anuncie(request):
         contact.descricao= descricao
         contact.bairro = bairro
         contact.rua = rua
-        contact.imagem = imagem
+        contact.imagem1 = imagem1
+        contact.imagem2 = imagem2
+        contact.imagem3 = imagem3
+        
         contact.save()
         return render(request,'anuncie.html',)
 
