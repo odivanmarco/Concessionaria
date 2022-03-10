@@ -87,6 +87,8 @@ def pesquisar(request):
         veiculos = Veiculo.objects.filter(cor__contains=pesquisa,)
     elif Veiculo.objects.filter(cidade__contains=pesquisa,):
         veiculos = Veiculo.objects.filter(cidade__contains=pesquisa,)
+    else:
+        veiculos = Veiculo.objects.all()
     return render(request, 'home.html', {'veiculos': veiculos})
 
 
