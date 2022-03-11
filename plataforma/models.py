@@ -25,7 +25,7 @@ class Veiculo(models.Model):
     rua = models.CharField(max_length=60)
     
     def __str__(self) -> str:
-        return self.rua
+        return self.modelo
 
 class Contato(models.Model):
     name = models.CharField(max_length=100)
