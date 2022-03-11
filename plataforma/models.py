@@ -23,8 +23,9 @@ class Veiculo(models.Model):
     cidade = models.CharField(max_length=60)
     bairro = models.CharField(max_length=60)
     rua = models.CharField(max_length=60)
+    
     def __str__(self) -> str:
-    return self.rua
+        return self.rua
 
 class Contato(models.Model):
     name = models.CharField(max_length=100)
