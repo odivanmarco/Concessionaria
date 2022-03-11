@@ -81,12 +81,12 @@ def anuncie(request):
 
 def pesquisar(request):
     pesquisa = request.POST.get('pesquisa')
-    if Veiculo.objects.filter(modelo__contains=pesquisa,):
-        veiculos = Veiculo.objects.filter(modelo__contains=pesquisa,)
-    elif Veiculo.objects.filter(cor__contains=pesquisa,):
-        veiculos = Veiculo.objects.filter(cor__contains=pesquisa,)
-    elif Veiculo.objects.filter(cidade__contains=pesquisa,):
-        veiculos = Veiculo.objects.filter(cidade__contains=pesquisa,)
+    if Veiculo.objects.filter(modelo__icontains=pesquisa,):
+        veiculos = Veiculo.objects.filter(modelo__icontains=pesquisa,)
+    elif Veiculo.objects.filter(cor__icontains=pesquisa,):
+        veiculos = Veiculo.objects.filter(cor__icontains=pesquisa,)
+    elif Veiculo.objects.filter(cidade__icontains=pesquisa,):
+        veiculos = Veiculo.objects.filter(cidade__icontains=pesquisa,)
     else:
         veiculos = Veiculo.objects.all()
     return render(request, 'home.html', {'veiculos': veiculos})
