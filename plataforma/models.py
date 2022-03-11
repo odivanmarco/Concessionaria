@@ -19,6 +19,7 @@ class Veiculo(models.Model):
     cor = models.CharField(max_length=30)
     tipo_combustivel = models.CharField(choices=choices_combustivel, max_length=1)
     descricao = models.TextField(max_length=255)
+    telefone = models.BigIntegerField()
     cidade = models.CharField(max_length=60)
     bairro = models.CharField(max_length=60)
     rua = models.CharField(max_length=60)
